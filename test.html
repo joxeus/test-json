@@ -1,39 +1,101 @@
-<html>
-<head><title>test</title></head>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Hanzo Table JSON</title>
+
+	<!-- INCLUDING JQUERY-->
+	<script src=
+"https://code.jquery.com/jquery-3.5.1.js">
+	</script>
+
+	<!-- CSS FOR STYLING THE PAGE -->
+	<style>
+		table {
+			margin: 0 auto;
+			font-size: large;
+			border: 1px solid black;
+		}
+
+		h1 {
+			text-align: center;
+			color: #006600;
+			font-size: xx-large;
+			font-family: 'Gill Sans',
+				'Gill Sans MT', ' Calibri',
+				'Trebuchet MS', 'sans-serif';
+		}
+
+		td {
+			background-color: #E4F5D4;
+			border: 1px solid black;
+		}
+
+		th,
+		td {
+			font-weight: bold;
+			border: 1px solid black;
+			padding: 10px;
+			text-align: center;
+		}
+
+		td {
+			font-weight: lighter;
+		}
+	</style>
+</head>
+
 <body>
+	<section>
+		<h1>Hanzo Table JSON</h1>
 
-    <button onclick="myFunction()">Try it</button>
+		<!-- TABLE CONSTRUCTION-->
+		<table id='table'>
+			<!-- HEADING FORMATION -->
+			<tr>
+				<th>UserHandle</th>
+				<th>Practice Problems</th>
+				<th>Coding Score</th>
+				<th>Articles</th>
+			</tr>
 
+			<script>
+				$(document).ready(function () {
 
-<script src=
-    "https://code.jquery.com/jquery-3.5.1.js">
-</script>
+					// FETCHING DATA FROM JSON FILE
+					$.getJSON("plan.json",
+							function (data) {
+						var student = '';
 
-<script>
+						// ITERATING THROUGH OBJECTS
+						$.each(data, function (key, value) {
 
-function myFunction() {
-//   alert("Hello! I am an alert box!");
-$.getJSON("plan.json", 
-    function (data) { alert(data.Sentence)
-})
-}
+							//CONSTRUCTION OF ROWS HAVING
+							// DATA FROM JSON OBJECT
+							student += '<tr>';
+							student += '<td>' +
+								value.GFGUserName + '</td>';
 
-// $.getJSON("plan.json", 
-//     function (data) { console.log(data)
-// })
-</script>
+							student += '<td>' +
+								value.NoOfProblems + '</td>';
 
-hello
+							student += '<td>' +
+								value.TotalScore + '</td>';
 
-    <!-- <form action="myurl" method="POST" name="myForm">
-        <p><label for="first_name">First Name:</label>
-        <input type="text" name="first_name" id="fname"></p>
+							student += '<td>' +
+								value.Articles + '</td>';
 
-        <p><label for="last_name">Last Name:</label>
-        <input type="text" name="last_name" id="lname"></p>
-
-        <input value="Submit" type="submit" onclick="submitform()">
-    </form> -->
-
+							student += '</tr>';
+						});
+						
+						//INSERTING ROWS INTO TABLE
+						$('#table').append(student);
+					});
+				});
+			</script>
+	</section>
 </body>
+
 </html>
+
+<!-- https://www.geeksforgeeks.org/how-to-fetch-data-from-json-file-and-display-in-html-table-using-jquery/ -->
