@@ -67,13 +67,14 @@
 		<button onclick="sort_table_data('TotalScore')">sort ME (by Score)!!!</button>
 		<br>
 		<button onclick="Add_entry()">Add_entry</button>
+		<button onclick="post_it()">post it!!!!</button>
 		<br>
 
 
-		<form action="/http://localhost:8000/plan.json" method="POST">
+		<!-- <form action="/http://localhost:8000/plan.json" method="POST">
 			<input name="plan" type="json" />
 			<button type="submit">Send This Bad Boy To The Server</button>
-		</form>
+		</form> -->
 
 		<!-- TABLE CONSTRUCTION-->
 		<table id='table'>
@@ -86,15 +87,27 @@
 			</tr>
 
 	<script>
-		const data_post = {"GFGUserName":"User-post-request","NoOfProblems":"300","TotalScore":"100","Articles":"23"};
-		const options = {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(data_post)
-		};
+		// const data_post = {"GFGUserName":"User-post-request","NoOfProblems":"300","TotalScore":"100","Articles":"23"};
+		// const options = {
+		// 	method: 'POST',
+		// 	headers: {
+		// 		'Content-Type': 'application/json'
+		// 	},
+		// 	body: JSON.stringify(data_post)
+		// };
+		function post_it() {
+			//const data_post = {"GFGUserName":"User-post-request","NoOfProblems":"300","TotalScore":"100","Articles":"23"};
+			const data_post = [{"GFGUserName":"User-hanzo","NoOfProblems":"300","TotalScore":"100","Articles":"23"},{"GFGUserName":"User-noob","NoOfProblems":"100","TotalScore":"190","Articles":"35"},{"GFGUserName":"User-bot","NoOfProblems":"150","TotalScore":"40","Articles":"300"},{"GFGUserName":"User-global","NoOfProblems":"10","TotalScore":"31","Articles":"12"},{"GFGUserName":"User-script-added1111","NoOfProblems":"10","TotalScore":"31","Articles":"12"}];
+			const options = {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(data_post)
+			};
+			fetch('/api', options);
 
+	};
 
 
 		$(document).ready(function () {
